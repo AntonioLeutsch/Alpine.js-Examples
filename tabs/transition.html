@@ -91,15 +91,15 @@
                         @click="activeTab = 'tab3'">Tab 3</button>
                 </nav>
 
-                <div class="tab__pane" x-show="activeTab === 'tab1'" x-transition:enter.1500ms>
+                <div class="tab__pane" x-show="activeTab === 'tab1'" x-transition:enter.duration.500ms>
                     🤩
                 </div>
                 
-                <div class="tab__pane" x-show="activeTab === 'tab2'" x-transition:enter.1500ms>
+                <div class="tab__pane" x-show="activeTab === 'tab2'" x-transition:enter.duration.500ms>
                     👍
                 </div>
                 
-                <div class="tab__pane" x-show="activeTab === 'tab3'" x-transition:enter.1500ms>
+                <div class="tab__pane" x-show="activeTab === 'tab3'" x-transition:enter.duration.500ms>
                     🎉
                 </div>
             </div>
