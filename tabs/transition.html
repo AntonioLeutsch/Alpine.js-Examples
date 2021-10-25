@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tabs | Alpine.js Examples</title>
+    <link rel="stylesheet" href="../style.css">
+
+    <style>
+        /* Style the tab */
+        .tab {
+            overflow: hidden;
+            border: 1px solid #ccc;
+            background-color: #f1f1f1;
+        }
+
+        /* Style the buttons that are used to open the tab content */
+        .tab button {
+            background-color: inherit;
+            float: left;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 14px 16px;
+            transition: 0.3s;
+        }
+
+        /* Change background color of buttons on hover */
+        .tab button:hover {
+            background-color: #ddd;
+        }
+
+        /* Create an active/current tablink class */
+        .tab button.active {
+            background-color: #ccc;
+        }
+
+        /* Style the tab content */
+        .tabcontent {
+            display: none;
+            padding: 6px 12px;
+            border: 1px solid #ccc;
+            border-top: none;
+        }
+
+        .tabcontent {
+            animation: fadeEffect 1s;
+            /* Fading effect takes 1 second */
+        }
+
+        /* Go from zero to full opacity */
+        @keyframes fadeEffect {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="max-w-lg m-auto flex justify-between items-center mb-6">
+        <a href="../index.html" class="hover:opacity-75">
+            <h1>Alpine.js Examples</h1>
+        </a>
+        <a href="./index.html" class="flex space-x-1 items-center text-blue-600">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16l-4-4m0 0l4-4m-4 4h18" />
+            </svg>
+            <span>Without Animation</span>
+        </a>
+    </div>
+    <main>
+
+        <section>
+            <h2>Alpine.js</h2>
+
+            <div x-data="{ activeTab : 'tab1' }">
+                <nav>
+                    <button :class="{'tab__button--active' : activeTab === 'tab1'}" class="tab__button"
+                        @click="activeTab = 'tab1'">Tab 1</button>
+                    <button :class="{'tab__button--active' : activeTab === 'tab2'}" class="tab__button"
+                        @click="activeTab = 'tab2'">Tab 2</button>
+                    <button :class="{'tab__button--active' : activeTab === 'tab3'}" class="tab__button"
+                        @click="activeTab = 'tab3'">Tab 3</button>
+                </nav>
+
+                <div class="tab__pane" x-show="activeTab === 'tab1'" x-transition:enter.opacity>
+                    🤩
+                </div>
+                
+                <div class="tab__pane" x-show="activeTab === 'tab2'" x-transition:enter.opacity>
+                    👍
+                </div>
+                
+                <div class="tab__pane" x-show="activeTab === 'tab3'" x-transition:enter.opacity>
+                    🎉
+                </div>
+            </div>
+        </section>
+
+        <h2 class="my-6">Vanilla JavaScript</h2>
+
+        <!-- Tab links -->
+        <div class="tab">
+            <button class="tablinks" onclick="openCity(event, 'Tab 1')" id="defaultOpen">Tab 1</button>
+            <button class="tablinks" onclick="openCity(event, 'Tab 2')">Tab 2</button>
+            <button class="tablinks" onclick="openCity(event, 'Tab 4')">Tab 4</button>
+        </div>
+
+        <!-- Tab content -->
+        <div id="Tab 1" class="tabcontent">
+            <h3>Tab 1</h3>
+            <p>London is the capital city of England.</p>
+        </div>
+
+        <div id="Tab 2" class="tabcontent">
+            <h3>Tab 2</h3>
+            <p>Paris is the capital of France.</p>
+        </div>
+
+        <div id="Tab 4" class="tabcontent">
+            <h3>Tab 4</h3>
+            <p>Tokyo is the capital of Japan.</p>
+        </div>
+
+        <script>
+            function openCity(evt, cityName) {
+                // Declare all variables
+                var i, tabcontent, tablinks;
+
+                // Get all elements with class="tabcontent" and hide them
+                tabcontent = document.getElementsByClassName("tabcontent");
+                for (i = 0; i < tabcontent.length; i++) {
+                    tabcontent[i].style.display = "none";
+                }
+
+                // Get all elements with class="tablinks" and remove the class "active"
+                tablinks = document.getElementsByClassName("tablinks");
+                for (i = 0; i < tablinks.length; i++) {
+                    tablinks[i].className = tablinks[i].className.replace(" active", "");
+                }
+
+                // Show the current tab, and add an "active" class to the button that opened the tab
+                document.getElementById(cityName).style.display = "block";
+                evt.currentTarget.className += " active";
+            }
+
+            document.getElementById("defaultOpen").click();
+
+        </script>
+
+    </main>
+
+    <script src="//unpkg.com/alpinejs" defer></script>
+</body>
+
+</html>
