@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fetching | Alpine.js Examples</title>
+    <link rel="stylesheet" href="../style.css">
+
+</head>
+
+<body>
+
+    <div class="max-w-lg m-auto flex justify-between items-center mb-6">
+        <a href="../index.html" class="hover:opacity-75">
+            <h1>Alpine.js Examples</h1>
+        </a>
+    </div>
+
+    <main>
+
+
+        <section>
+            <h2>Countdown Clock</h2>
+            <p class="text-gray-500 mb-4 block">Time till next Halloween</p>
+
+            <div x-data="countDownClock()" x-init="startCountdown()" class="grid grid-cols-2 md:grid-cols-4 gap-4">
+
+                <div class="flex flex-col items-center justify-between space-y-1">
+
+                    <span
+                        class="font-bold text-primary text-2xl sm:text-3xl md:text-4xl w-16 h-16 sm:w-24 sm:h-24 flex items-center justify-center rounded text-white bg-yellow-600"
+                        x-text="clock.days"></span>
+                    <span class="text-xs sm:text-sm text-yellow-900">Days</span>
+
+                </div>
+
+                <div class="flex flex-col items-center justify-between space-y-1">
+
+                    <span
+                        class="font-bold text-primary text-2xl sm:text-3xl md:text-4xl w-16 h-16 sm:w-24 sm:h-24 flex items-center justify-center rounded text-white bg-yellow-600"
+                        x-text="clock.hours"></span>
+                    <span class="text-xs sm:text-sm text-yellow-900">Hours</span>
+
+                </div>
+
+                <div class="flex flex-col items-center justify-between space-y-1">
+
+                    <span
+                        class="font-bold text-primary text-2xl sm:text-3xl md:text-4xl w-16 h-16 sm:w-24 sm:h-24 flex items-center justify-center rounded text-white bg-yellow-600"
+                        x-text="clock.minutes"></span>
+                    <span class="text-xs sm:text-sm text-yellow-900">Minutes</span>
+
+                </div>
+
+                <div class="flex flex-col items-center justify-between space-y-1">
+
+                    <span
+                        class="font-bold text-primary text-2xl sm:text-3xl md:text-4xl w-16 h-16 sm:w-24 sm:h-24 flex items-center justify-center rounded text-white bg-yellow-600"
+                        x-text="clock.seconds"></span>
+                    <span class="text-xs sm:text-sm text-yellow-900">Seconds</span>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+        <script>
+            window.countDownClock = () => {
+
+                const d = new Date
+
+                const deadline = () => {
+                    if (Date.parse(`31 October ${d.getFullYear()}`) - Date.parse(new Date()) > 0) {
+                        return  `31 October ${d.getFullYear()}`
+                    } else {
+                        return  `31 October ${d.getFullYear() + 1}`
+                    }
+                }
+
+                return {
+                    clock: {
+                        days: '00',
+                        hours: '00',
+                        minutes: '00',
+                        seconds: '00',
+                        remaining: 1000
+                    },
+                    deadline: deadline(),
+                    calculateTimeLeft: function () {
+                        const deadline = this.deadline;
+                        const remaining = Date.parse(deadline) - Date.parse(new Date());
+                        const seconds = Math.floor((remaining / 1000) % 60);
+                        const minutes = Math.floor((remaining / 1000 / 60) % 60);
+                        const hours = Math.floor((remaining / (1000 * 60 * 60)) % 24);
+                        const days = Math.floor(remaining / (1000 * 60 * 60 * 24));
+                        return {
+                            days,
+                            hours,
+                            minutes,
+                            seconds,
+                            remaining
+                        };
+                    },
+                    startCountdown: function () {
+                        const countdownIntervalFunction = setInterval(() => {
+                            const timeLeft = this.calculateTimeLeft();
+                            this.clock = timeLeft;
+                            if (timeLeft.remaining <= 0) {
+                                clearInterval(countdownIntervalFunction);
+                            }
+                        }, 1000);
+                    }
+                }
+            }
+        </script>
+
+    </main>
+
+    <script src="//unpkg.com/alpinejs" defer></script>
+</body>
+
+</html>
