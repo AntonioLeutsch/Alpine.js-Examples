@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fetching | Alpine.js Examples</title>
+    <link rel="stylesheet" href="../style.css" />
+  </head>
+
+  <body>
+    <div class="max-w-lg m-auto flex justify-between items-center mb-6">
+      <a href="../index.html" class="hover:opacity-75">
+        <h1>Alpine.js Examples</h1>
+      </a>
+    </div>
+
+    <main x-data="{open: false}">
+      <nav
+        class="absolute top-0 left-0 p-4 bg-gray-50 h-screen"
+        x-show.transition="open"
+      >
+        <ol @click.away="open = false">
+          <li>Entry 1</li>
+          <li>Entry 2</li>
+          <li>Entry 3</li>
+        </ol>
+        <p>Click anywhere outside the overlay to close it again</p>
+      </nav>
+
+      <section>
+        <h2>Slide-Over</h2>
+        <button @click="open = !open">
+          Click me to <span x-text="open ? 'hide' : 'reveal'"></span> the
+          slide-over menu
+        </button>
+      </section>
+    </main>
+
+    <script src="//unpkg.com/alpinejs" defer></script>
+  </body>
+</html>
