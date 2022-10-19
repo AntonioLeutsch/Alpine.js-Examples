@@ -1,41 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Intersect 🎉 | Alpine.js Examples</title>
-    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./style.css" />
+  </head>
 
-</head>
-
-<body>
-
+  <body>
     <div class="max-w-lg m-auto flex justify-between items-center mb-6">
-        <a href="./index.html" class="hover:opacity-75">
-            <h1>Alpine.js Examples</h1>
-        </a>
+      <a href="./index.html" class="hover:opacity-75">
+        <h1>Alpine.js Examples</h1>
+      </a>
     </div>
 
     <main>
-
-        <div class="demo" style="height: 150px; overflow-y: scroll;" x-data="" x-ref="root">
-            <a href="#" @click.prevent="$refs.root.scrollTo({ top: $refs.root.scrollHeight, behavior: 'smooth' })">
-                Scroll Down👇
-            </a>
-            <div style="height: 50vh"></div>
-            <div x-data="{ shown: false }" x-intersect="shown = true" id="yoyo">
-                <div x-show="shown" x-transition.duration.1000ms="" style="display: none;">
-                    👻 &nbsp; Boooo! 🎃
-                </div>
-                <div x-show="! shown">&nbsp;</div>
-            </div>
+      <div
+        class="demo"
+        style="height: 150px; overflow-y: scroll;"
+        x-data=""
+        x-ref="root"
+      >
+        <a
+          href="#"
+          @click.prevent="$refs.root.scrollTo({ top: $refs.root.scrollHeight, behavior: 'smooth' })"
+        >
+          Scroll Down👇
+        </a>
+        <div style="height: 50vh"></div>
+        <div x-data="{ shown: false }" x-intersect="shown = true" id="yoyo">
+          <div
+            x-show="shown"
+            x-transition.duration.1000ms=""
+            style="display: none;"
+          >
+            👻 &nbsp; Boooo! 🎃
+          </div>
+          <div x-show="! shown">&nbsp;</div>
         </div>
-
+      </div>
     </main>
-    <script defer src="https://unpkg.com/@alpinejs/intersect@3.x.x/dist/cdn.min.js"></script>
+    <script
+      defer
+      src="https://unpkg.com/@alpinejs/intersect@3.x.x/dist/cdn.min.js"
+    ></script>
     <script src="//unpkg.com/alpinejs" defer></script>
-</body>
-
+  </body>
 </html>
