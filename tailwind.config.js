@@ -1,11 +1,16 @@
 module.exports = {
-  purge: ["./index.html", "./fetch/**/*.html", "./tabs/**/*.html", "./misc/**/*.html"],
+  purge: [
+    "./index.html",
+    "./fetch/**/*.html",
+    "./tabs/**/*.html",
+    "./misc/**/*.html"
+  ],
   darkMode: false, // or 'media' or 'class'
   theme: {
-    extend: {},
+    extend: {}
   },
   variants: {
-    extend: {},
+    extend: {}
   },
-  plugins: [],
+  plugins: []
 };

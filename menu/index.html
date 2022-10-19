@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Menu | Alpine.js Examples</title>
+    <link rel="stylesheet" href="../style.css">
+
+
+    <style>
+        /* Style the item */
+        .menu {
+            background-color: rgba(255, 255, 255, 0.95);
+            border-radius: 0 0 0 2rem;
+            height: 20vh;
+            padding: 2rem;
+            position: absolute;
+            right: 0;
+            top: 0;
+        }
+
+        .menu__item {
+            padding: 1rem 0;
+            color: red;
+        }
+
+        [x-cloak] {
+            display: none;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="max-w-lg m-auto flex justify-between items-center mb-6">
+        <a href="../index.html" class="hover:opacity-75">
+            <h1>Alpine.js Examples</h1>
+        </a>
+    </div>
+
+    <main>
+        <section>
+            <h2>Alpine.js</h2>
+
+            <div x-data="{menuOpen: false, activeMenuItem: 'item1'}" x-show="{ activeMenuItem : 'link1' }">
+                <button x-on:click="menuOpen = ! menuOpen"><span x-text="menuOpen ? 'Hide' : 'Show'"></span>
+                    menu</button>
+                <nav x-show="menuOpen" class="menu" x-transition x-cloak>
+                    <ul>
+                        <li :class="{'menu__item--active' : activeMenuItem === 'link1'}" class="menu__item"
+                            @click="activeMenuItem = 'item1'"><a href="#">Menu item 1</a></li>
+                        <li :class="{'menu__item--active' : activeMenuItem === 'item2'}" class="menu__item"
+                            @click="activeMenuItem = 'item2'"><a href="#">Menu item 2</a></li>
+                        <li :class="{'menu__item--active' : activeMenuItem === 'item3'}" class="menu__item"
+                            @click="activeMenuItem = 'item3'"><a href="#">Menu item 3</a></li>
+                </nav>
+            </div>
+        </section>
+    </main>
+    <script src="//unpkg.com/alpinejs" defer></script>
+</body>
+
+</html>
